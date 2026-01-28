@@ -1,9 +1,9 @@
 //-----------------------------------------------------------
 // IMPORTAÇÃO DOS MÓDULOS THREE.JS
 //-----------------------------------------------------------
-import * as THREE from './three.module.js';
-import { PointerLockControls } from './PointerLockControls.js';
-import { GLTFLoader } from './GLTFLoader.js';
+import * as THREE from 'three';
+import { PointerLockControls } from 'three/addons/PointerLockControls.js';
+import { GLTFLoader } from 'three/addons/GLTFLoader.js';
 
 //-----------------------------------------------------------
 // VARIÁVEIS DE MOVIMENTO E COLISÃO
@@ -433,4 +433,5 @@ window.addEventListener('resize', () => {
 });
 
 animate();
+
 
