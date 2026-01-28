@@ -1,7 +1,7 @@
 //-----------------------------------------------------------
 // IMPORTAÇÃO DOS MÓDULOS THREE.JS
 //-----------------------------------------------------------
-import * as THREE from 'three';
+import * as THREE from './three.module.js';
 import { PointerLockControls } from 'three/addons/PointerLockControls.js';
 import { GLTFLoader } from 'three/addons/GLTFLoader.js';
 
@@ -433,5 +433,6 @@ window.addEventListener('resize', () => {
 });
 
 animate();
+
 
 
