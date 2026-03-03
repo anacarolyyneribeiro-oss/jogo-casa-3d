@@ -264,7 +264,7 @@ loader.load('casa_01.glb', (gltf) => {
         // ---------- PAREDES (VERDE) ----------
         if (nome.includes('parede') || nome.includes('wall')) {
             child.material = new THREE.MeshStandardMaterial({
-                color: 0x218b57,
+                color: 0x2e8b57,
                 roughness: 0.8,
                 side: THREE.DoubleSide
             });
@@ -925,7 +925,6 @@ window.addEventListener('resize', () => {
 });
 
 animate();
-
 
 
 
