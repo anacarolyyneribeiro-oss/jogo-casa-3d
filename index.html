@@ -1,14 +1,191 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Meu Jogo 3D - Lab Física UFU</title>
-    <style>
-        body { margin: 0; overflow: hidden; }
-        canvas { display: block; }
-    </style>
+  <title>Meu Jogo 3D - Lab Física UFU</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+    }
+
+    /* Mira verde */
+    #crosshair {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      width: 14px;
+      height: 14px;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      /* não bloqueia clique */
+      z-index: 9999;
+    }
+
+    #crosshair::before,
+    #crosshair::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background: #00ff00;
+      box-shadow: 0 0 8px rgba(0, 255, 0, .65);
+      transform: translate(-50%, -50%);
+      border-radius: 2px;
+    }
+
+    /* linha horizontal */
+    #crosshair::before {
+      width: 14px;
+      height: 2px;
+    }
+
+    /* linha vertical */
+    #crosshair::after {
+      width: 2px;
+      height: 14px;
+    }
+
+    #deleteHud {
+      position: fixed;
+      top: 18px;
+      right: 22px;
+      z-index: 99999;
+      font-family: Arial, sans-serif;
+      font-weight: 900;
+      font-size: 34px;
+      color: #ff1a1a;
+      text-shadow: 0 0 10px rgba(255, 0, 0, .55);
+      display: none;
+      /* começa escondido */
+      pointer-events: none;
+      user-select: none;
+    }
+
+    #hud {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      /* não atrapalha clique */
+      z-index: 99998;
+      font-family: Arial, sans-serif;
+    }
+
+    .hud-left {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      background: rgba(0, 0, 0, .45);
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: 12px;
+      padding: 10px 12px;
+      color: #fff;
+      min-width: 180px;
+      backdrop-filter: blur(6px);
+    }
+
+    .hud-title {
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: .5px;
+      opacity: .9;
+      margin-bottom: 6px;
+    }
+
+    .hud-line {
+      font-size: 13px;
+      line-height: 1.4;
+      opacity: .95;
+    }
+
+    #hudMode {
+      font-weight: 800;
+    }
+
+    .hud-right {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+    }
+
+    .hud-help {
+      background: rgba(0, 0, 0, .35);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 12px;
+      padding: 10px 12px;
+      color: #fff;
+      font-size: 13px;
+      line-height: 1.35;
+      backdrop-filter: blur(6px);
+    }
+
+    .hud-help b {
+      color: #7CFF7C;
+    }
+
+    #doorPrompt {
+      position: fixed;
+      left: 50%;
+      top: 58%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, .55);
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: 10px;
+      padding: 8px 12px;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      z-index: 99999;
+      display: none;
+      pointer-events: none;
+      backdrop-filter: blur(6px);
+    }
+  </style>
+
 </head>
+
 <body>
-    <script type="importmap">
+  <div id="crosshair" aria-hidden="true"></div>
+  <div id="doorPrompt"></div>
+  <div id="deleteHud">X</div>
+  <div id="hud">
+    <div class="hud-left">
+      <div class="hud-title">HUD</div>
+      <div class="hud-line">Modo: <span id="hudMode">Normal</span></div>
+      <div class="hud-line">Tomadas: <span id="hudCount">0</span></div>
+    </div>
+
+
+
+
+    <div class="hud-right">
+      <div class="hud-help">
+        <div><b>E</b> = colocar</div>
+        <div><b>X</b> = excluir</div>
+        <div><b>Mouse Esq.</b> = confirmar/Excluir</div>
+        <div><b>ESC</b> = cancelar</div>
+      </div>
+    </div>
+  </div>
+
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="./main.js"></script>
+</body>
+
+<body>
+  <script type="importmap">
     {
       "imports": {
         "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
@@ -16,7 +193,7 @@
       }
     }
     </script>
-    <script type="module" src="./main.js"></script>
+  <script type="module" src="./main.js"></script>
 </body>
-</html>
 
+</html>
